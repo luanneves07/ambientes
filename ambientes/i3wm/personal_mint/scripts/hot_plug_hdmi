@@ -1,0 +1,33 @@
+#!/bin/bash
+
+#Recupera pelo xrandr os monitores HDMI conectados
+HDMI_LIST=$(xrandr | grep HDMI | awk '{ ORS=";" } { print $1 " " $2 }')
+
+#Inicializa variaveis de auxilio
+CONNECTED_STRING="connected"
+CONNECTED=false
+
+#Faz um split na lista de hdmi encontrados, transformando em um array
+IFS=';' read -ra HDMI_ARRAY <<< "$HDMI_LIST"
+
+#Itera em toda a lista desligando os monitores HDMI que nao estao conectados
+#E guarda o o nome do monitor HDMI conectado (Se houver)
+for idx in "${!HDMI_ARRAY[@]}"; do
+	HDMI="${HDMI_ARRAY[idx]}"
+	STATUS=$(echo $HDMI | awk '{print $2}')
+	NAME=$(echo $HDMI | awk '{print $1}')
+	if [ "$CONNECTED_STRING" == "$STATUS" ]; then
+		HDMI_CONNECTED_NAME=$NAME
+		CONNECTED=true
+	else
+		xrandr --output $NAME --off
+	fi
+done
+
+#Caso exista monitor HDMI conectado, pega o ultimo encontrado e seta como primario em modo automatico
+#Caso contrario seta monitor eDP1 como primario
+if $CONNECTED; then
+	xrandr --output $HDMI_CONNECTED_NAME --auto --right-of eDP-1-1
+else
+	xrandr --output eDP-1-1 --auto --primary
+fi
