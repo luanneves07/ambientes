@@ -215,10 +215,10 @@ assign [class="^[Ee]clipse"] $w3
 exec --no-startup-id /usr/local/etc/hot_plug_hdmi
 # Inicializa aplicacoes mais utilizadas automaticamente
 exec --no-startup-id /usr/local/etc/gchrome_teams
-exec --no-startup-id "google-chrome --app=https://scm.atech.com.br"
-exec --no-startup-id "google-chrome --app=https://jira.atech.com.br"
+exec --no-startup-id "google-chrome --app=https://CORPORATE_GIT"
+exec --no-startup-id "google-chrome --app=https://CORPORATE_JIRA"
 exec --no-startup-id "google-chrome --app=https://outlook.office.com/mail/inbox"
-exec --no-startup-id "google-chrome --app=https://www.yammer.com/atech.com.br/#/home"
+exec --no-startup-id "google-chrome --app=https:CORPORATE_YAMMER"
 # exec --no-startup-id /usr/local/etc/devDocs
 # Configuracoes de netWork na toolBar do i3
 exec --no-startup-id nm-applet
@@ -240,7 +240,7 @@ exec --no-startup-id synclient HorizEdgeScroll=1 VertEdgeScroll=1 VertScrollDelt
 bindsym $mod+Shift+u exec --no-startup-id "setxkbmap us"
 bindsym $mod+Shift+b exec --no-startup-id "setxkbmap br"
 bindsym $mod+Shift+d exec --no-startup-id "google-chrome --app=https://teams.microsoft.com/go#"
-bindsym $mod+Shift+g exec --no-startup-id "google-chrome --app=https://scm.atech.com.br"
+bindsym $mod+Shift+g exec --no-startup-id "google-chrome --app=CORPORATE_GIT"
 bindsym $mod+Shift+Delete exec --no-startup-id "systemctl suspend"
 bindsym $mod+m exec i3 bar mode toggle
 
