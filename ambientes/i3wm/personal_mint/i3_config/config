@@ -105,21 +105,22 @@ bindsym $mod+o exec /usr/local/etc/screen_lock
 set $w1 "1:WEB"
 set $w2 "2:DEV"
 set $w3 "3:CODE"
-set $w4 "4:DOCS"
-set $w5 "5:VIM"
-set $w6 "6:OUTPUT"
-set $w7 " 7 "
-set $w8 " 8 "
+set $w4 "4:INPUT"
+set $w5 "5:DATA_BASE"
+set $w6 "6:DOCS"
+set $w7 "7:DOCKER"
+set $w8 "8:"
 set $w9 "9:OTHER"
 set $w10 "10:THINGS"
 
 # Configure Workspace Screen
 workspace $w1 output "eDP-1-1"
-workspace $w4 output "eDP-1-1"
 workspace $w6 output "eDP-1-1"
 workspace $w9 output "eDP-1-1"
 workspace $w2 output "HDMI-0"
 workspace $w3 output "HDMI-0"
+workspace $w4 output "HDMI-0"
+workspace $w7 output "HDMI-0"
 workspace $w5 output "HDMI-0"
 workspace $w10 output "HDMI-0"
 
@@ -194,13 +195,18 @@ assign [title="^skylab"] $w1
 assign [window_role="pop-up"] $w1
 #
 # DevDocs no workspace DOCS
-assign [class="^[dD]ev[dD]ocs"] $w4
+assign [class="^[dD]ev[dD]ocs"] $w6
 #
 # VSCode no workspace CODE
 assign [class="^[cC]ode$"] $w3
 # 
 # Discord no workspace WEB
 assign [class="^discord$"] $w1
+
+# Insomnia no workspace INPUT
+assign [class="^[iI]nsomnia$"] $w4
+# PostBird no workspace DATA_BASE
+assign [class="^[Pp]ostbird$"] $w5
 
 # Ações realizadas após login no WM
 # Configura displays 
@@ -209,8 +215,10 @@ exec --no-startup-id /usr/local/etc/hot_plug_hdmi
 exec --no-startup-id /usr/local/etc/gchrome_skylab
 exec --no-startup-id /usr/local/etc/gchrome_github
 exec --no-startup-id /usr/local/etc/devDocs
+exec --no-startup-id insomnia
 exec --no-startup-id discord
 exec --no-startup-id code
+exec --no-startup-id postbird
 # Configuracoes de netWork na toolBar do i3
 exec --no-startup-id nm-applet
 # Configura cor do backGround
@@ -226,6 +234,8 @@ exec --no-startup-id "setxkbmap us"
 bindsym $mod+Shift+c exec --no-startup-id code
 bindsym $mod+Shift+m exec --no-startup-id /usr/local/etc/devDocs
 bindsym $mod+Shift+d exec --no-startup-id discord
+bindsym $mod+Shift+i exec --no-startup-id insomnia
+bindsym $mod+Shift+p exec --no-startup-id postbird
 bindsym $mod+Shift+u exec --no-startup-id "setxkbmap us"
 bindsym $mod+Shift+b exec --no-startup-id "setxkbmap br"
 bindsym $mod+Shift+g exec --no-startup-id "google-chrome --app=https://github.com"
