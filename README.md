@@ -88,7 +88,7 @@ do fórum askUbuntu.
 
 2. Executar fdisk no seu disco:
 
-```$ Run sudo fdisk /dev/sdX```
+```$ sudo fdisk /dev/sdX```
 
 3. Dentro do prompt, executar os seguintes comandos:
 
