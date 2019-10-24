@@ -1,4 +1,5 @@
-# Repositorio criado com o objetivo de manter configurações utilizados para produtividade no ambiente de desenvolvimento
+# Docker
+Repositorio criado com o objetivo de manter configurações utilizados para produtividade no ambiente de desenvolvimento
 
 Enfrentei alguns problemas para instalação do docker no linux mint 19.1 e 19.2 e resolvi centralizar aqui (Com referências) pontos que
 me ajudaram a realizar a configuração.
