@@ -104,7 +104,7 @@ do fórum askUbuntu.
 
 4. Configurar o sistema de arquivos
 
-```$ Run sudo mkfs.ext4 /dev/sdX1```
+```$ sudo mkfs.ext4 /dev/sdX1```
 
 5. Adicionar ao fstab:
 
