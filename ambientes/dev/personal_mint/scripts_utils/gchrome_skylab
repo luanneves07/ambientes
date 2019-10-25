@@ -1,0 +1,3 @@
+#!/bin/bash
+
+google-chrome --app=https://skylab.rocketseat.com.br/
