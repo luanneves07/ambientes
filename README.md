@@ -1,4 +1,5 @@
-# Repositorio criado com o objetivo de manter configurações utilizados para produtividade no ambiente de desenvolvimento
+# Docker
+Repositorio criado com o objetivo de manter configurações utilizados para produtividade no ambiente de desenvolvimento
 
 Enfrentei alguns problemas para instalação do docker no linux mint 19.1 e 19.2 e resolvi centralizar aqui (Com referências) pontos que
 me ajudaram a realizar a configuração.
@@ -87,7 +88,7 @@ do fórum askUbuntu.
 
 2. Executar fdisk no seu disco:
 
-```$ Run sudo fdisk /dev/sdX```
+```$ sudo fdisk /dev/sdX```
 
 3. Dentro do prompt, executar os seguintes comandos:
 
@@ -103,7 +104,7 @@ do fórum askUbuntu.
 
 4. Configurar o sistema de arquivos
 
-```$ Run sudo mkfs.ext4 /dev/sdX1```
+```$ sudo mkfs.ext4 /dev/sdX1```
 
 5. Adicionar ao fstab:
 
