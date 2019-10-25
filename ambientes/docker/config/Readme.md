@@ -16,8 +16,8 @@ motivo foi desenvolvido um mini tutorial com referências de como executar a ins
 neste ambiente.
 
 ## Instalação
-Para executar o processo de instalação, basta seguir o descrito [aqui](github.com/)
+Para executar o processo de instalação, basta seguir o descrito [aqui](https://github.com/luanneves07/ambientes/blob/master/ambientes/docker/config/docker_install.md)
 
 ## Gerenciamento de disco
 Para alterar da maneira mais simples possível o local onde o docker armazena suas
-imagens, basta verificar o passo a passo descrito [aqui](github.com/)
+imagens, basta verificar o passo a passo descrito [aqui](https://github.com/luanneves07/ambientes/blob/master/ambientes/docker/config/config_disk.md)

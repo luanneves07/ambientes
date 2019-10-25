@@ -1,9 +1,0 @@
-#!/bin/bash
-
-sleep 1
-i3 bar mode toggle
-i3 workspace number 999
-i3 workspace number 998
-sleep 1
-scrot /tmp/screen_locked.png
-i3lock -i /tmp/screen_locked.png -n; i3 bar mode toggle; i3 workspace number 2; i3 workspace number 1;
