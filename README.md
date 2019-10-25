@@ -5,9 +5,9 @@
 
 # Configurações de interface gráfica do ambiente
 ### terminal
-- Oh-my-zsh (spaceship) [configurações](ambientes/ambientes/dev/personal_mint/zsh)
+- Oh-my-zsh (spaceship) [configurações](https://github.com/luanneves07/ambientes/tree/master/ambientes/dev/personal_mint/zsh)
 ### GUI
-- Configurações do i3wm podem ser acessadas [aqui](ambientes/ambientes/dev/personal_mint/i3_config)
+- Configurações do i3wm podem ser acessadas [aqui](https://github.com/luanneves07/ambientes/tree/master/ambientes/dev/personal_mint/i3_config)
 
 # Configurações de instalação do Docker no mint 19.2
 - Para verificar os passos utilizados para instalação do docker neste ambiente, entre [aqui](https://github.com/luanneves07/ambientes/tree/master/ambientes/docker/config)
