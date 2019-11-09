@@ -1,7 +1,8 @@
-# Especificações
-- Linux mint 19.2 (Ou 19.1)
-- x86_64
-- WindowManager: i3wm
+# Objetivo
+Este repositório foi criado com o objetivo de manter as configurações utilizadas nas máquinas de desenvolvimento salvas.
+Desta forma fica mais segura restaurar o ambiente quando for necessário.
+Aqui também existe um tutorial de como instalar o docker no linux mint >= 19.
+Futuramente criarei uma Wiki explicando os processos realizados para configurar o ambiente conforme os arquivos aqui guardados.
 
 # Configurações de interface gráfica do ambiente
 ### terminal
