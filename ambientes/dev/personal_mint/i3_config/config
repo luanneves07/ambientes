@@ -10,7 +10,7 @@
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
 set $mod Mod4
-set $monitor_one "eDP-1"
+set $monitor_one "HDMI-0"
 
 
 # Font for window titles. Will also be used by the bar unless a different font
@@ -105,28 +105,29 @@ bindsym $mod+o exec /usr/local/etc/screen_lock
 set $w1 "1:WEB"
 set $w2 "2:DEV"
 set $w3 "3:CODE"
-set $w4 "4:INPUT"
-set $w5 "5:DATA_BASE"
-set $w6 "6:DOCS"
+set $w4 "4:CODE"
+set $w5 "5:CODE"
+set $w6 "6:DATABASE"
 set $w7 "7:DOCKER"
-set $w8 "8:"
+set $w8 "8:STEAM"
 set $w9 "9:OTHER"
 set $w10 "10:THINGS"
 
 # Configure Workspace Screen
-workspace $w1 output "eDP-1-1"
-workspace $w6 output "eDP-1-1"
-workspace $w9 output "eDP-1-1"
+workspace $w1 output "HDMI-0"
 workspace $w2 output "HDMI-0"
 workspace $w3 output "HDMI-0"
 workspace $w4 output "HDMI-0"
-workspace $w7 output "HDMI-0"
-workspace $w5 output "HDMI-0"
-workspace $w10 output "HDMI-0"
+workspace $w5 output "DP-1-1"
+workspace $w6 output "DP-1-1"
+workspace $w7 output "DP-1-1"
+workspace $w8 output "DP-1-1"
+workspace $w9 output "HDMI-0"
+workspace $w10 output "DP-1-1"
 
 # Utilizado para fazer o lock bonitamente
 workspace 999 output "HDMI-0"
-workspace 998 output "eDP-1-1"
+workspace 998 output "DP-1-1"
 
 # switch to workspace
 bindsym $mod+1 workspace $w1
@@ -187,9 +188,6 @@ bindsym $mod+r mode "resize"
 
 # Atribui objetivo dos workspaces
 #
-# Navegadores abrem inicialmente no Workspace WEB
-assign [instance="^Navigator$"] $w1
-#
 # Skylab, Teams e GitHub no Workspace WEB
 assign [title="^skylab"] $w1
 assign [window_role="pop-up"] $w1
@@ -198,7 +196,7 @@ assign [window_role="pop-up"] $w1
 assign [class="^[dD]ev[dD]ocs"] $w6
 #
 # VSCode no workspace CODE
-assign [class="^[cC]ode$"] $w3
+assign [class="^[cC]ode$"] $w5
 # 
 # Discord no workspace WEB
 assign [class="^discord$"] $w1
@@ -206,21 +204,32 @@ assign [class="^discord$"] $w1
 # Insomnia no workspace INPUT
 assign [class="^[iI]nsomnia$"] $w4
 # PostBird no workspace DATA_BASE
-assign [class="^[Pp]ostbird$"] $w5
+assign [class="^[Pp]ostbird$"] $w6
+assign [class="^[Mm]ongo[Dd][Bb] [Cc]ompass$"] $w6
+
+assign [class="^Steam$"] $w8
 
 # Ações realizadas após login no WM
 # Configura displays 
+#
 exec --no-startup-id /usr/local/etc/hot_plug_hdmi
+#
 # Inicializa aplicacoes mais utilizadas automaticamente
+#
 exec --no-startup-id /usr/local/etc/gchrome_skylab
 exec --no-startup-id /usr/local/etc/gchrome_github
 exec --no-startup-id /usr/local/etc/devDocs
 exec --no-startup-id insomnia
-exec --no-startup-id discord
 exec --no-startup-id code
+exec --no-startup-id discord
 exec --no-startup-id postbird
+exec --no-startup-id mongodb-compass
+exec --no-startup-id steam
 # Configuracoes de netWork na toolBar do i3
 exec --no-startup-id nm-applet
+exec --no-startup-id volumeicon
+exec --no-startup-id blueman-adapters
+exec --no-startup-id solaar
 # Configura cor do backGround
 #exec --no-startup-id xsetroot -solid '#300000'
 # Restaura info de wallpaper do sistema
@@ -228,19 +237,26 @@ exec --no-startup-id nitrogen --restore
 # executa transparencia nos terminais
 exec --no-startup-id compton
 # Configura default do teclado para K780
-exec --no-startup-id "setxkbmap us"
+exec --no-startup-id "setxkbmap -layout us -variant intl"
 
 # Atalhos de teclado
 bindsym $mod+Shift+c exec --no-startup-id code
-bindsym $mod+Shift+m exec --no-startup-id /usr/local/etc/devDocs
 bindsym $mod+Shift+d exec --no-startup-id discord
 bindsym $mod+Shift+i exec --no-startup-id insomnia
 bindsym $mod+Shift+p exec --no-startup-id postbird
-bindsym $mod+Shift+u exec --no-startup-id "setxkbmap us"
+bindsym $mod+Shift+n exec --no-startup-id mongodb-compass
+bindsym $mod+Shift+a exec --no-startup-id steam
+bindsym $mod+Shift+u exec --no-startup-id "setxkbmap -layout us -variant intl"
 bindsym $mod+Shift+b exec --no-startup-id "setxkbmap br"
+bindsym $mod+Shift+o exec --no-startup-id "google-chrome --app=https://gmail.com"
+bindsym $mod+Shift+m exec --no-startup-id "google-chrome --app=https://open.spotify.com"
 bindsym $mod+Shift+g exec --no-startup-id "google-chrome --app=https://github.com"
 bindsym $mod+Shift+s exec --no-startup-id "google-chrome --app=https://skylab.rocketseat.com.br"
 bindsym $mod+Shift+Delete exec --no-startup-id "systemctl suspend"
+
+bindsym $mod+Tab exec --no-startup-id "python3 /git/mouse_motion/mx3_py_motion.py"
+# Esconde a barra de status
+bindsym $mod+m bar mode toggle
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
@@ -248,6 +264,15 @@ bar {
 	id main-bar
 	status_command i3status
 	tray_output primary
+	font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+	font pango:Arial 12 
 }
-# Esconde a barra de status
-bindsym $mod+m bar mode toggle
+
+# Popula workspace DEV
+#
+workspace $w2 output "HDMI-0"
+exec --no-startup-id i3 workspace $w2
+exec --no-startup-id "/usr/local/etc/craft_workspaces $2"
+
+hide_edge_borders both
+
