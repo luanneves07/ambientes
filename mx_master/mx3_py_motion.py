@@ -26,20 +26,25 @@ def execute(command):
         os.system('i3 workspace prev')
         #keyBoard.press_keys(['Control_L','Alt_L', 'Left'])
     elif(moosegesture.UP == command):
-        os.system('dmenu')
+        os.system('google-chrome')
         #keyBoard.press_keys(['Super_L'])
     elif(moosegesture.DOWN == command):
-        os.system('/usr/local/etc/screen_lock')
+        os.system('i3 layout toggle')
         #keyBoard.press_keys(['Super_L','d'])
     else:
         os.system('notify-send "Master MX 3" "Command not defined"')
 
 def perform_gesture():
     initial_position = mouse.position()
-    while initial_position==mouse.position():
-        sleep(0.05)
-    movements = debounce_mouse_position()
-    gesture = moosegesture.getGesture(movements)
-    execute(gesture[0])
+    timeout = time() + 1
+    while (time() < timeout) and (initial_position==mouse.position()):
+        sleep(0.025)
+
+    if initial_position==mouse.position():
+        os.system('gnome-terminal')
+    else:
+        movements = debounce_mouse_position()
+        gesture = moosegesture.getGesture(movements)
+        execute(gesture[0])
 
 perform_gesture()
