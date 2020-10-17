@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# popula workspace DEV
+i3 workspace number $1 && gnome-terminal && gnome-terminal && i3 resize shrink width 24 px or 24 ppt

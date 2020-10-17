@@ -1,0 +1,211 @@
+# If you come from bash you might have to change your $PATH.
+export PATH=$HOME/bin:/usr/local/bin:/usr/local/etc:$HOME/.vim/plugin:$PATH
+export EDITOR="vim"
+
+# Path to your oh-my-zsh installation.
+export ZSH="/home/lsilva/.oh-my-zsh"
+
+# React-Native vars
+export ANDROID_HOME=~/Android/Sdk
+export ANDROID_SDK_ROOT=/home/lsilva/Android/Sdk/
+export PATH=$PATH:$ANDROID_HOME/tools
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+
+#Maven
+export M2_HOME=/usr/local/apache-maven-3.6.3
+export M2=$M2_HOME/bin
+export MAVEN_OPTS="-Xms256m -Xmx512m"
+export PATH=$M2:$PATH
+
+#Java
+#JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
+#export JAVA_HOME
+#PATH="$JAVA_HOME/bin:$PATH"
+
+#Graalvm
+GRAALVM_HOME=/usr/local/graalvm
+export GRAALVM_HOME
+PATH="$GRAALVM_HOME/bin:$PATH"
+
+export COUNTER=0
+# Set name of the theme to load --- if set to "random", it will
+# load a random theme each time oh-my-zsh is loaded, in which case,
+# to know which specific one was loaded, run: echo $RANDOM_THEME
+# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
+ZSH_THEME="spaceship"
+
+# Set list of themes to pick from when loading at random
+# Setting this variable when ZSH_THEME=random will cause zsh to load
+# a theme from this variable instead of looking in ~/.oh-my-zsh/themes/
+# If set to an empty array, this variable will have no effect.
+# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
+
+# Uncomment the following line to use case-sensitive completion.
+# CASE_SENSITIVE="true"
+
+# Uncomment the following line to use hyphen-insensitive completion.
+# Case-sensitive completion must be off. _ and - will be interchangeable.
+# HYPHEN_INSENSITIVE="true"
+
+# Uncomment the following line to disable bi-weekly auto-update checks.
+# DISABLE_AUTO_UPDATE="true"
+
+# Uncomment the following line to automatically update without prompting.
+# DISABLE_UPDATE_PROMPT="true"
+
+# Uncomment the following line to change how often to auto-update (in days).
+# export UPDATE_ZSH_DAYS=13
+
+# Uncomment the following line if pasting URLs and other text is messed up.
+# DISABLE_MAGIC_FUNCTIONS=true
+
+# Uncomment the following line to disable colors in ls.
+# DISABLE_LS_COLORS="true"
+
+# Uncomment the following line to disable auto-setting terminal title.
+# DISABLE_AUTO_TITLE="true"
+
+# Uncomment the following line to enable command auto-correction.
+# ENABLE_CORRECTION="true"
+
+# Uncomment the following line to display red dots whilst waiting for completion.
+# COMPLETION_WAITING_DOTS="true"
+
+# Uncomment the following line if you want to disable marking untracked files
+# under VCS as dirty. This makes repository status check for large repositories
+# much, much faster.
+# DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+# Uncomment the following line if you want to change the command execution time
+# stamp shown in the history command output.
+# You can set one of the optional three formats:
+# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# or set a custom format using the strftime function format specifications,
+# see 'man strftime' for details.
+# HIST_STAMPS="mm/dd/yyyy"
+
+# Would you like to use another custom folder than $ZSH/custom?
+# ZSH_CUSTOM=/path/to/new-custom-folder
+
+# Which plugins would you like to load?
+# Standard plugins can be found in ~/.oh-my-zsh/plugins/*
+# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+# Add wisely, as too many plugins slow down shell startup.
+#plugins=(git, zsh-completions)
+plugins=(git)
+
+source $ZSH/oh-my-zsh.sh
+
+# User configuration
+
+# export MANPATH="/usr/local/man:$MANPATH"
+
+# You may need to manually set your language environment
+# export LANG=en_US.UTF-8
+
+# Preferred editor for local and remote sessions
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export EDITOR='vim'
+# else
+#   export EDITOR='mvim'
+# fi
+
+# Compilation flags
+# export ARCHFLAGS="-arch x86_64"
+
+# Set personal aliases, overriding those provided by oh-my-zsh libs,
+# plugins, and themes. Aliases can be placed here, though oh-my-zsh
+# users are encouraged to define aliases within the ZSH_CUSTOM folder.
+# For a full list of active aliases, run `alias`.
+#
+# Example aliases
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
+alias gll="git log --oneline"
+alias l='clear && ls -lah'
+alias projects='pushd /git && l && pwd'
+alias pl='projects'
+alias cuni='c uni'
+alias ccamp='c uni'
+
+export PROJ_DIR
+
+function find_dir_inside_path { 
+        DIR=$(ls --color=never -lah $1 | awk '{$1=$2=$3=$4=$5=$6=$7=$8=""; print $0}' | grep $2 | head -n 1 | tr -d '\n' | sed -e 's/^[[:space:]]*//')
+        echo "$1/$DIR"
+    }
+function c { 
+        if [ -z "$1" ]; then
+            pushd /git
+        else
+            PROJ_DIR=$(find_dir_inside_path "/git" $1)
+            pushd $PROJ_DIR
+        fi
+        l && pwd
+    }
+function t { 
+        echo $PROJ_DIR
+        if [ -z "$1" ]; then
+            echo "Unspecified module"
+        else
+            if [ -z "$PROJ_DIR" ]; then
+                echo "PROJ_DIR not defined"
+            else
+                pushd $(find_dir_inside_path $PROJ_DIR $1)
+                l && pwd
+            fi
+        fi
+    }
+function inf { 
+        if [ -z "$1" ]; then
+            PROJ_DIR="/git/unicamp"
+        else
+            PROJ_DIR=$(find_dir_inside_path "/git/unicamp" $1)
+        fi
+        pushd $PROJ_DIR
+        l && pwd
+    }
+function dkvol { 
+        if [ -z "$1" ]; then
+            pushd $HOME/hdrive/docker/volumes/
+        else
+            pushd $(find_dir_inside_path "$HOME/hdrive/docker/volumes" $1)
+        fi
+        l && pwd 
+    }
+function dk { pushd ~/hdrive/docker && l && pwd }
+
+function mkd { eval {mkdir,cd}\ "$1"\;  }
+
+SPACESHIP_PROMPT_ORDER=(
+    user
+    dir
+    host
+    git
+    exec_time
+    line_sep
+    vi_mode
+    jobs
+    exit_code
+    char
+)
+
+SPACESHIP_PROMPT_ADD_NEW_LINE=false
+SPACESHIP_CHAR_SYMBOL="❯"
+SPACESHIP_CHAR_SUFFIX=" "
+
+### Added by Zplugin's installer
+source '/home/lsilva/.zplugin/bin/zplugin.zsh'
+autoload -Uz _zplugin
+(( ${+_comps} )) && _comps[zplugin]=_zplugin
+### End of Zplugin installer's chunk
+
+zplugin light zsh-users/zsh-autosuggestions
+zplugin light zsh-users/zsh-completions
+zplugin light zdharma/fast-syntax-highlighting
+
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+
+

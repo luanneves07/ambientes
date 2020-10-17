@@ -1,0 +1,4 @@
+#!/bin/bash
+
+#google-chrome --app=https://play.google.com/books
+google-chrome --app="data:text/html,<html><body><script>window.moveTo(0,0);window.resizeTo(3840,1840);window.location='https://play.google.com/books';window.name='Books';</script></body></html>"

@@ -1,0 +1,5 @@
+#!/bin/bash
+
+WINDOW_ID=$(xwininfo | awk '/Window.id/{print $4}')
+x11vnc -nopw -viewonly -avahi -id $WINDOW_ID >/dev/null 2>&1 &
+

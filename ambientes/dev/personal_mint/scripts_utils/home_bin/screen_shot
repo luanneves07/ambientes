@@ -1,0 +1,3 @@
+#!/bin/bash
+
+import "$(zenity --file-selection --directory)/screenshot$(date "+%F-%T").png"

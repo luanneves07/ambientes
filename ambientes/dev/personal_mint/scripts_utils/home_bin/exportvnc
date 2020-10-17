@@ -1,0 +1,5 @@
+#!/bin/bash
+
+WINDOW_ID=$(xwininfo | awk '/Window.id/{print $4}')
+x11vnc -nopw -avahi -id $WINDOW_ID -rfbauth /home/lsilva/bin/.vncpasswd >/dev/null 2>&1 &
+

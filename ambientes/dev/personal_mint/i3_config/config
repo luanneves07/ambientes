@@ -115,13 +115,13 @@ set $w10 "10:THINGS"
 
 # Configure Workspace Screen
 workspace $w1 output "HDMI-0"
-workspace $w2 output "HDMI-0"
-workspace $w3 output "HDMI-0"
-workspace $w4 output "HDMI-0"
+workspace $w2 output "DP-1-1"
+workspace $w3 output "DP-1-1"
+workspace $w4 output "DP-1-1"
 workspace $w5 output "DP-1-1"
-workspace $w6 output "DP-1-1"
-workspace $w7 output "DP-1-1"
-workspace $w8 output "DP-1-1"
+workspace $w6 output "HDMI-0"
+workspace $w7 output "HDMI-0"
+workspace $w8 output "HDMI-0"
 workspace $w9 output "HDMI-0"
 workspace $w10 output "DP-1-1"
 
@@ -218,17 +218,17 @@ exec --no-startup-id /usr/local/etc/hot_plug_hdmi
 #
 exec --no-startup-id /usr/local/etc/gchrome_skylab
 exec --no-startup-id /usr/local/etc/gchrome_github
-exec --no-startup-id /usr/local/etc/devDocs
-exec --no-startup-id insomnia
-exec --no-startup-id code
-exec --no-startup-id discord
-exec --no-startup-id postbird
-exec --no-startup-id mongodb-compass
-exec --no-startup-id steam
+#exec --no-startup-id /usr/local/etc/devDocs
+#exec --no-startup-id insomnia
+#exec --no-startup-id code
+#exec --no-startup-id discord
+#exec --no-startup-id postbird
+#exec --no-startup-id mongodb-compass
+#exec --no-startup-id steam
 # Configuracoes de netWork na toolBar do i3
 exec --no-startup-id nm-applet
-exec --no-startup-id volumeicon
-exec --no-startup-id blueman-adapters
+#exec --no-startup-id volumeicon
+#exec --no-startup-id blueman-adapters
 exec --no-startup-id solaar
 # Configura cor do backGround
 #exec --no-startup-id xsetroot -solid '#300000'
@@ -254,23 +254,39 @@ bindsym $mod+Shift+g exec --no-startup-id "google-chrome --app=https://github.co
 bindsym $mod+Shift+s exec --no-startup-id "google-chrome --app=https://skylab.rocketseat.com.br"
 bindsym $mod+Shift+Delete exec --no-startup-id "systemctl suspend"
 
-bindsym $mod+Tab exec --no-startup-id "python3 /git/mouse_motion/mx3_py_motion.py"
+#bindsym $mod+Tab exec --no-startup-id "python3 /git/mouse_motion/mx3_py_motion.py"
 # Esconde a barra de status
 bindsym $mod+m bar mode toggle
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
+#bar {
+#	id main-bar
+#	status_command i3status
+#	tray_output primary
+#	font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+#	font pango:Arial 12 
+#}
+
 bar {
-	id main-bar
-	status_command i3status
-	tray_output primary
-	font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
-	font pango:Arial 12 
+    font pango:DejaVu Sans Mono, FontAwesome 12
+    position bottom
+    status_command ~/bin/i3status-rs ~/.config/i3/status.toml
+    colors {
+        separator #666666
+        background #222222
+        statusline #dddddd
+        focused_workspace #0088CC #0088CC #ffffff
+        active_workspace #333333 #333333 #ffffff
+        inactive_workspace #333333 #333333 #888888
+        urgent_workspace #2f343a #900000 #ffffff
+    }
+    tray_output primary
 }
 
 # Popula workspace DEV
 #
-workspace $w2 output "HDMI-0"
+workspace $w2 output "DP-1-1"
 exec --no-startup-id i3 workspace $w2
 exec --no-startup-id "/usr/local/etc/craft_workspaces $2"
 

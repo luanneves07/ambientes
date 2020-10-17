@@ -1,0 +1,4 @@
+#!/bin/bash
+
+ACTIVE_WORKSPACE=$(wmctrl -d | grep '*' | cut -d ' ' -f1)
+i3lock -i /wallpapers/Abstract.png -n; wmctrl -s $ACTIVE_WORKSPACE;
